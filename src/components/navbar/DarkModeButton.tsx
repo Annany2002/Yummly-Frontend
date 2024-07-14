@@ -10,9 +10,13 @@ export default function DarkModeButton() {
   return (
     <button
       onClick={() => (theme === "dark" ? setTheme("light") : setTheme("dark"))}
-      className="transition-all duration-100 bg-transparent dark:text-slate-950 rounded-lg p-1"
+      className="transition-all bg-transparent dark:text-slate-950 rounded-lg p-1"
     >
-      {currentTheme === "dark" ? <MoonStars size={30} /> : <Sun size={30} />}
+      {currentTheme === "dark" ? (
+        <MoonStars color="white" size={30} />
+      ) : (
+        <Sun size={30} />
+      )}
     </button>
   );
 }

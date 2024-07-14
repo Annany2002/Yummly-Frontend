@@ -36,7 +36,7 @@ export default function DishCard({ dish }: { dish: Dish }) {
   };
 
   return (
-    <div className="w-[240px] bg-gray-100 rounded-xl h-[240px] flex flex-col items-center justify-center gap-2 hover:scale-105 transition-all duration-500 border-2">
+    <div className="w-[240px] bg-gray-100 dark:bg-[#0F0F0F] rounded-xl h-[240px] flex flex-col items-center justify-center gap-2 hover:scale-105 transition-all duration-500 border-2 shadow-sm">
       <Image
         height="100"
         width="100"
@@ -47,13 +47,13 @@ export default function DishCard({ dish }: { dish: Dish }) {
       <p className="text-xl font-medium">{dish.dishName}</p>
       <p className="text-sm">
         Status :{" "}
-        <span className="font-bold text-gray-600">
+        <span className="font-bold text-gray-600 dark:text-gray-500">
           {toggleState === true ? "Published" : "Not Published"}
         </span>
       </p>
       <button
         onClick={togglePublishedState}
-        className="px-2 border py-1.5 shadow-md bg-white rounded-lg"
+        className="px-2 border py-1.5 shadow-md dark:bg-[#040D12] bg-white rounded-lg"
       >
         {isLoading ? (
           <Spinner size={24} className="animate-spin" />

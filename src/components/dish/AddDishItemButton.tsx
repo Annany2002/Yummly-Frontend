@@ -9,7 +9,7 @@ export default function AddDishItemButton() {
     <div className="w-full flex justify-end px-8">
       <button
         onClick={() => setModalOpen(!modalOpen)}
-        className="flex gap-1 shadow-sm items-center justify-evenly border-2 px-2 py-1 rounded-md font-medium  bg-white hover:bg-slate-100"
+        className="flex gap-1 shadow-sm items-center justify-evenly border-2 px-2 py-1 rounded-md font-medium dark:bg-[#040D12] bg-white hover:bg-slate-100"
       >
         <PlusCircle size={20} />
         Add an Item

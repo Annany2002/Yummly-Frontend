@@ -1,4 +1,5 @@
 import { Spinner, X } from "@phosphor-icons/react";
+import { setEngine } from "crypto";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
 export default function AddDishItem({
@@ -15,6 +16,7 @@ export default function AddDishItem({
     isPublished: false,
   });
   const [dishUploaded, setIsDishuploaded] = useState<boolean>(false);
+  const [isError, setIsError] = useState<string>("");
 
   const handleFormSubmit = async (e: FormEvent) => {
     try {
@@ -32,10 +34,13 @@ export default function AddDishItem({
       );
       await response.json();
       setModalOpen(false);
-    } catch (error) {
+      setIsError("");
+    } catch (error: any) {
+      setIsError(error.message);
       console.log(error);
     } finally {
       setIsDishuploaded(false);
+      setIsError("");
     }
   };
 
@@ -49,18 +54,21 @@ export default function AddDishItem({
           className="cursor-pointer"
         />
       </div>
-      <div className="bg-white border-2 shadow-sm py-3 px-4 flex flex-col gap-4 rounded-lg">
-        <h1 className="text-3xl text-slate-900 font-bold">
+      <div className="bg-white transition-all border-2 shadow-sm py-3 px-4 flex flex-col gap-4 rounded-lg dark:bg-[#0F0F0F]">
+        <h1 className="text-3xl text-slate-900 dark:text-white font-bold">
           Tell me about your favourite Dish
         </h1>
         <form className="flex flex-col gap-6">
           <div className="flex text-md flex-col text-black gap-[10px]">
-            <label className="text-lg font-medium" htmlFor="name">
+            <label
+              className="text-lg dark:text-white font-medium"
+              htmlFor="name"
+            >
               Your dish name:{" "}
             </label>
             <input
               required
-              className="text-slate-800 placeholder:text-slate-800 bg-transparent border-2 shadow-sm py-1 px-2 outline-none rounded-md"
+              className="text-slate-800 placeholder:text-slate-800 bg-transparent border-2 dark:text-slate-200 dark:placeholder:text-white shadow-sm py-1 px-2 outline-none rounded-md"
               type="text"
               name="name"
               id="name"
@@ -70,12 +78,11 @@ export default function AddDishItem({
                 setFormData({ ...formData, dishName: e.target.value })
               }
             />
-            <label className="text-lg font-medium" htmlFor="id">
+            <label className="text-lg dark:text-white font-medium" htmlFor="id">
               Your dish id:{" "}
             </label>
             <input
-              required
-              className="text-slate-800 placeholder:text-slate-800 bg-transparent border-2 shadow-sm py-1 px-2 outline-none rounded-md"
+              className="text-slate-800 placeholder:text-slate-800 dark:text-slate-200 dark:placeholder:text-white bg-transparent border-2 shadow-sm py-1 px-2 outline-none rounded-md"
               type="text"
               name="id"
               id="id"
@@ -85,12 +92,15 @@ export default function AddDishItem({
                 setFormData({ ...formData, dishId: e.target.value })
               }
             />
-            <label className="text-lg font-medium" htmlFor="url">
+            <label
+              className="text-lg dark:text-white font-medium"
+              htmlFor="url"
+            >
               Your dish&apos;s url:{" "}
             </label>
             <input
               required
-              className="text-slate-800 placeholder:text-slate-800 bg-transparent border-2 shadow-sm py-1 px-2 outline-none rounded-md tracking-wide"
+              className="text-slate-800 placeholder:text-slate-800 dark:text-slate-200 dark:placeholder:text-white bg-transparent border-2 shadow-sm py-1 px-2 outline-none rounded-md tracking-wide"
               type="text"
               name="url"
               id="url"
@@ -100,10 +110,10 @@ export default function AddDishItem({
                 setFormData({ ...formData, imageUrl: e.target.value })
               }
             />
-            <legend className="text-lg font-medium">
+            <legend className="text-lg dark:text-white font-medium">
               Is your dish published?
             </legend>
-            <div className="flex gap-3">
+            <div className="flex gap-3 dark:text-white">
               <div className="flex gap-1">
                 <input
                   required
@@ -135,8 +145,7 @@ export default function AddDishItem({
           <div className="w-full flex justify-center">
             <button
               onClick={handleFormSubmit}
-              className="shadow-sm border-2 px-2 py-1 text-lg rounded-md font-medium text-white bg-gray-700 hover:bg-slate-800"
-              type="submit"
+              className="shadow-sm border-2 px-2 py-1 text-lg rounded-md font-medium text-white bg-gray-700 hover:bg-slate-800 dark:hover:bg-gray-800 dark:bg-[#0F0F0F]"
             >
               {dishUploaded ? (
                 <div className="flex items-center gap-2">
@@ -150,6 +159,9 @@ export default function AddDishItem({
           </div>
         </form>
       </div>
+      {isError !== "" && (
+        <div className="text-xl text-red-600 font-bold">{isError}</div>
+      )}
     </div>
   );
 }

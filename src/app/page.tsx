@@ -29,11 +29,11 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col gap-8 bg-white min-h-screen">
+    <main className="flex flex-col gap-6 bg-white dark:bg-[#191919] min-h-screen">
       <Navbar />
       <AddDishItemButton />
       <div className="flex flex-col gap-6 sm:px-8 px-4">
-        <h1 className="text-2xl text-slate-700 font-semibold">
+        <h1 className="text-2xl text-slate-700 dark:text-gray-50 font-semibold">
           Dishes You Like
         </h1>
         <div className="flex flex-wrap items-start px-4 gap-x-4 gap-y-6">
