@@ -36,7 +36,7 @@ export default function DishCard({ dish }: { dish: Dish }) {
   };
 
   return (
-    <div className="w-[240px] bg-gray-100 dark:bg-[#0F0F0F] rounded-xl h-[240px] flex flex-col items-center justify-center gap-2 hover:scale-105 transition-all duration-500 border-2 shadow-sm">
+    <div className="w-[220px] bg-gray-100 dark:bg-[#0F0F0F] rounded-xl h-[240px] flex flex-col items-center justify-center gap-2 hover:scale-105 transition-all duration-500 border-2 shadow-sm">
       <Image
         height="100"
         width="100"

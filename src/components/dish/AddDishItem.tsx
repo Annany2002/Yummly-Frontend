@@ -1,5 +1,4 @@
 import { Spinner, X } from "@phosphor-icons/react";
-import { setEngine } from "crypto";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
 export default function AddDishItem({
@@ -45,17 +44,16 @@ export default function AddDishItem({
   };
 
   return (
-    <div className="w-screen flex flex-col gap-3 items-center justify-center h-full backdrop-blur-md absolute right-0 top-0 z-[999] bg-white/10 transition-all">
-      <div className="w-[548px] flex justify-end">
+    <div className="w-screen min-h-screen flex flex-col gap-3 items-center justify-center h-auto backdrop-blur-md absolute right-0 top-0 z-[999] bg-white/10 transition-all">
+      <div className="sm:w-[548px] w-full flex justify-end">
         <X
           onClick={() => setModalOpen(!modalOpen)}
-          color="black"
           size={30}
-          className="cursor-pointer"
+          className="cursor-pointer dark:text-white"
         />
       </div>
       <div className="bg-white transition-all border-2 shadow-sm py-3 px-4 flex flex-col gap-4 rounded-lg dark:bg-[#0F0F0F]">
-        <h1 className="text-3xl text-slate-900 dark:text-white font-bold">
+        <h1 className="text:xl md:text-3xl text-slate-900 dark:text-white font-bold">
           Tell me about your favourite Dish
         </h1>
         <form className="flex flex-col gap-6">
@@ -68,7 +66,7 @@ export default function AddDishItem({
             </label>
             <input
               required
-              className="text-slate-800 placeholder:text-slate-800 bg-transparent border-2 dark:text-slate-200 dark:placeholder:text-white shadow-sm py-1 px-2 outline-none rounded-md"
+              className="text-slate-800 placeholder:text-slate-800 bg-transparent border-2 dark:text-slate-200 dark:placeholder:text-gray-400 shadow-sm py-1 px-2 outline-none rounded-md"
               type="text"
               name="name"
               id="name"

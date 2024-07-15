@@ -31,12 +31,14 @@ export default function Home() {
   return (
     <main className="flex flex-col gap-6 bg-white dark:bg-[#191919] min-h-screen">
       <Navbar />
-      <AddDishItemButton />
       <div className="flex flex-col gap-6 sm:px-8 px-4">
-        <h1 className="text-2xl text-slate-700 dark:text-gray-50 font-semibold">
-          Dishes You Like
-        </h1>
-        <div className="flex flex-wrap items-start px-4 gap-x-4 gap-y-6">
+        <div className="flex justify-between items-center w-full">
+          <h1 className="text-lg sm:text-xl md:text-2xl text-slate-700 dark:text-gray-50 font-semibold">
+            Dishes You Like
+          </h1>
+          <AddDishItemButton />
+        </div>
+        <div className="flex flex-wrap place-content-evenly px-2 gap-6">
           {isDishLoading && (
             <div className="flex gap-2 items-center justify-center h-64 w-full">
               <Spinner className="animate-spin" size={32} />

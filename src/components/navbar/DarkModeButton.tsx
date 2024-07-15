@@ -1,5 +1,3 @@
-"use client";
-
 import { useTheme } from "next-themes";
 import { MoonStars, Sun } from "@phosphor-icons/react";
 
@@ -10,12 +8,12 @@ export default function DarkModeButton() {
   return (
     <button
       onClick={() => (theme === "dark" ? setTheme("light") : setTheme("dark"))}
-      className="transition-all bg-transparent dark:text-slate-950 rounded-lg p-1"
+      className="transition-all bg-transparent rounded-lg p-1"
     >
       {currentTheme === "dark" ? (
-        <MoonStars color="white" size={30} />
+        <Sun color="white" size={30} />
       ) : (
-        <Sun size={30} />
+        <MoonStars size={30} />
       )}
     </button>
   );
