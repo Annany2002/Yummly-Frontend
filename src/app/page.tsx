@@ -7,7 +7,7 @@ import AddDishItemButton from "@/components/dish/AddDishItemButton";
 import { Spinner } from "@phosphor-icons/react";
 
 export default function Home() {
-  const [Dishes, setDishes] = useState<Array<Dish>>([]);
+  const [dishes, setDishes] = useState<Array<Dish>>([]);
   const [isDishLoading, setIsDishLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -31,12 +31,12 @@ export default function Home() {
   return (
     <main className="flex flex-col gap-6 bg-white dark:bg-[#191919] min-h-screen">
       <Navbar />
-      <div className="flex flex-col gap-6 sm:px-8 px-4">
+      <div className="flex flex-col gap-6 pb-2 sm:pb-0 sm:px-8 px-4">
         <div className="flex justify-between items-center w-full">
           <h1 className="text-lg sm:text-xl md:text-2xl text-slate-700 dark:text-gray-50 font-semibold">
             Dishes You Like
           </h1>
-          <AddDishItemButton />
+          <AddDishItemButton setDishes={setDishes} />
         </div>
         <div className="flex flex-wrap place-content-evenly px-2 gap-6">
           {isDishLoading && (
@@ -45,7 +45,7 @@ export default function Home() {
               <h1 className="text-xl"> Loading...</h1>
             </div>
           )}
-          {Dishes.map((dish, _) => (
+          {dishes.map((dish, _) => (
             <div key={_}>
               <DishCard dish={dish} />
             </div>

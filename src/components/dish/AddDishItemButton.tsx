@@ -1,8 +1,13 @@
 import { PlusCircle } from "@phosphor-icons/react";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import AddDishItem from "./AddDishItem";
+import { Dish } from "./DishCard";
 
-export default function AddDishItemButton() {
+export default function AddDishItemButton({
+  setDishes,
+}: {
+  setDishes: Dispatch<SetStateAction<Dish[]>>;
+}) {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -15,7 +20,11 @@ export default function AddDishItemButton() {
         Add an Item
       </button>
       {modalOpen && (
-        <AddDishItem modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        <AddDishItem
+          modalOpen={modalOpen}
+          setDishes={setDishes}
+          setModalOpen={setModalOpen}
+        />
       )}
     </>
   );

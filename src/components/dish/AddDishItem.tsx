@@ -1,12 +1,15 @@
 import { Spinner, X } from "@phosphor-icons/react";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import { Dish } from "./DishCard";
 
 export default function AddDishItem({
   modalOpen,
   setModalOpen,
+  setDishes,
 }: {
   modalOpen: boolean;
   setModalOpen: Dispatch<SetStateAction<boolean>>;
+  setDishes: Dispatch<SetStateAction<Dish[]>>;
 }) {
   const [formData, setFormData] = useState({
     dishName: "",
@@ -31,7 +34,8 @@ export default function AddDishItem({
           body: JSON.stringify(formData),
         }
       );
-      await response.json();
+      const res = await response.json();
+      setDishes((prev) => [...prev, res]);
       setModalOpen(false);
       setIsError("");
     } catch (error: any) {
@@ -44,7 +48,7 @@ export default function AddDishItem({
   };
 
   return (
-    <div className="w-screen min-h-screen flex flex-col gap-3 items-center justify-center h-auto backdrop-blur-md absolute right-0 top-0 z-[999] bg-white/10 transition-all">
+    <div className="w-screen min-h-screen flex flex-col gap-3 items-center justify-center h-auto backdrop-blur-md fixed right-0 top-0 z-[999] bg-white/10 transition-all">
       <div className="sm:w-[548px] w-full flex justify-end">
         <X
           onClick={() => setModalOpen(!modalOpen)}
@@ -80,7 +84,7 @@ export default function AddDishItem({
               Your dish id:{" "}
             </label>
             <input
-              className="text-slate-800 placeholder:text-slate-800 dark:text-slate-200 dark:placeholder:text-white bg-transparent border-2 shadow-sm py-1 px-2 outline-none rounded-md"
+              className="text-slate-800 placeholder:text-slate-800 dark:text-slate-200 dark:placeholder:text-gray-400 bg-transparent border-2 shadow-sm py-1 px-2 outline-none rounded-md"
               type="text"
               name="id"
               id="id"
@@ -98,7 +102,7 @@ export default function AddDishItem({
             </label>
             <input
               required
-              className="text-slate-800 placeholder:text-slate-800 dark:text-slate-200 dark:placeholder:text-white bg-transparent border-2 shadow-sm py-1 px-2 outline-none rounded-md tracking-wide"
+              className="text-slate-800 placeholder:text-slate-800 dark:text-slate-200 dark:placeholder:text-gray-400 bg-transparent border-2 shadow-sm py-1 px-2 outline-none rounded-md tracking-wide"
               type="text"
               name="url"
               id="url"
@@ -123,7 +127,9 @@ export default function AddDishItem({
                     setFormData({ ...formData, isPublished: true })
                   }
                 />
-                <label htmlFor="isPublishedTrue">True</label>
+                <label className="dark:text-gray-400" htmlFor="isPublishedTrue">
+                  True
+                </label>
               </div>
 
               <div className="flex gap-1">
@@ -136,7 +142,12 @@ export default function AddDishItem({
                     setFormData({ ...formData, isPublished: false })
                   }
                 />
-                <label htmlFor="isPublishedFalse">False</label>
+                <label
+                  className="dark:text-gray-400"
+                  htmlFor="isPublishedFalse"
+                >
+                  False
+                </label>
               </div>
             </div>
           </div>
